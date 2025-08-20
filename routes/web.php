@@ -5,7 +5,6 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Home', [
-        'name' => 'Jeffrey Way',
         'frameworks' => [
             'Laravel',
             'Vue',
@@ -15,10 +14,15 @@ Route::get('/', function () {
 });
 
 Route::get('/users', function () {
-    sleep(2);
-    return Inertia::render('Users');
+    return Inertia::render('Users', [
+        'time' => now()->addHours(2)->locale('da_DK')->toTimeString()
+    ]);
 });
 
 Route::get('/settings', function () {
     return Inertia::render('Settings');
+});
+
+Route::post('/logout', function () {
+    dd('logging');
 });
